@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ncl id="exemplo01" xmlns="http://www.ncl.org.br/NCL3.0/EDTVProfile">
+    <head>
+        <regionBase>
+            <region id="rgTV" width="100%" height="100%">
+                <region id="rgTitulo1" left="25%" top="5%" width="50%" height="15%" />
+                <region id="rgVideo1" left="25%" top="25%" width="50%" height="50%" />
+            </region>
+        </regionBase>
+        <descriptorBase>
+            <descriptor id="dVideo1" region="rgVideo1" />
+            <descriptor id="dTitulo1" region="rgTitulo1">
+                <descriptorParam name="scroll" value="home" />
+            </descriptor>
+        </descriptorBase>
+        <connectorBase>
+            <importBase alias="connectors"
+                documentURI="maestroConnectorBase.com" />
+        </connectorBase>
+    </head>
+    <body>
+        <port id="pinicio" component="video1" />
+        <media id="video1" src="media/video1.mpg" descriptor="dVideo1" />
+        <media type="text/html" id="titulo1" src="media/titulo1.html" descriptor="dTitulo1" />
+        <link id="IVideo1Titulo1Start" xconnector="connectors#onBeginStart">
+            <bind component="video1" role="onBegin" />
+            <bind component="titulo1" role="start" />
+        </link>
+        <link id="IVideo1Titulo1End" xconnector="connectors#onEndStop">
+            <bind component="video1" role="onEnd" />
+            <bind component="titulo1" role="stop" />
+        </link>
+    </body>
+</ncl>
